@@ -36,27 +36,27 @@ How To:
 
 **7. (For Single Domain)**
 // login save 'session-id' into text file called id.txt
-# mgmt_cli login user admin password vpn123  > id.txt 
+mgmt_cli login user admin password vpn123  > id.txt 
 
 // use the id.txt as a file from which the session-id (your token) is taken and perform add host command.
-# mgmt_cli add host --batch blotus_hosts.csv -s id.txt
-# mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
+mgmt_cli add host --batch blotus_hosts.csv -s id.txt
+mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
 
 // publish and logout (again using the same session-id)
-# mgmt_cli publish –s id.txt
-# mgmt_cli logout –s id.txt
+mgmt_cli publish –s id.txt
+mgmt_cli logout –s id.txt
 
 **7. (For Multi Domain)**
 // login to domain named MyDomain and save 'session-id' into text file called id.txt. (you can use -d "MyDomain" as well)
-#  mgmt_cli login user admin password vpn123 domain "MyDomain" > id.txt 
+mgmt_cli login user admin password vpn123 domain "MyDomain" > id.txt 
 
 // use the id.txt as a file from which the session-id (your token) is taken and perform add host command.
-# mgmt_cli add host --batch blotus_hosts.csv -s id.txt
-# mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
+mgmt_cli add host --batch blotus_hosts.csv -s id.txt
+mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
 
 // publish and logout (again using the same session-id)
-# mgmt_cli publish –s id.txt
-# mgmt_cli logout –s id.txt
+mgmt_cli publish –s id.txt
+mgmt_cli logout –s id.txt
 
 **7. (For the Lazy, single domain)**
 mgmt_cli -r true add host --batch blotus_hosts.csv
@@ -66,4 +66,4 @@ mgmt_cli -r true add host --batch gnremy_hosts.csv
 9. If you have used the default group "groupname", change the group to something else.
 10. If you have any questions  or something isn't working, feel free to ask!
 11. If there are any other IPs you need a list for, let me know and I will add it
-12. 
+
