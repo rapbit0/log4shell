@@ -4,23 +4,23 @@ I have created lists of hosts known to exploit CVE-2021-44228. These .csv files 
 
 These  lists are based on the following sources:
 
-gnremy_hosts.csv : https://gist.github.com/gnremy/c546c7911d5f876f263309d7161a7217#file-cve-2021-44228_ips-csv
+gnremy_hosts.csv : https://gist.github.com/gnremy/c546c7911d5f876f263309d7161a7217#file-cve-2021-44228_ips-csv<br>
 blotus_hosts.csv : https://gist.github.com/blotus/f87ed46718bfdc634c9081110d243166#file-log4j_exploitation_attempts_crowdsec-csv
 
 The files are setup like the following:
 
-name,ipv4-address,groups,color,tags
-h_167.99.88.151_CVE-2021-44228,167.99.88.151,groupname,red,CVE-2021-44228_Log4J
-h_167.99.44.32_CVE-2021-44228,167.99.44.32,groupname,red,CVE-2021-44228_Log4J
-h_167.99.36.245_CVE-2021-44228,167.99.36.245,groupname,red,CVE-2021-44228_Log4J
-h_167.71.4.81_CVE-2021-44228,167.71.4.81,groupname,red,CVE-2021-44228_Log4J
+name,ipv4-address,groups,color,tags<br>
+h_167.99.88.151_CVE-2021-44228,167.99.88.151,groupname,red,CVE-2021-44228_Log4J<br>
+h_167.99.44.32_CVE-2021-44228,167.99.44.32,groupname,red,CVE-2021-44228_Log4J<br>
+h_167.99.36.245_CVE-2021-44228,167.99.36.245,groupname,red,CVE-2021-44228_Log4J<br>
+h_167.71.4.81_CVE-2021-44228,167.71.4.81,groupname,red,CVE-2021-44228_Log4J<br>
 
 
-name: h_167.99.88.151_CVE-2021-44228  // consists of h_IPADDRESS_CVE-2021-44228
-ipv4-address: IPv4Address
-groups: groupname                     //The group you want to add the hosts to
-color: red
-tags: CVE-2021-44228_Log4J
+name: h_167.99.88.151_CVE-2021-44228  // consists of h_IPADDRESS_CVE-2021-44228<br>
+ipv4-address: IPv4Address<br>
+groups: groupname                     //The group you want to add the hosts to<br>
+color: red<br>
+tags: CVE-2021-44228_Log4J<br>
 
 
 How To:
@@ -34,33 +34,33 @@ How To:
 5. In expert mode run the command: dos2unix blotus_hosts.csv         (dos2unix will convert the files from DOS line endings (carriage return + line feed) to Unix line endings (line feed). This is was necessary for me after editing the files in excel)
 6. In expert mode run the command: dos2unix gnremy_hosts.csv
 
-**7. (For Single Domain)**
-// login save 'session-id' into text file called id.txt
+7. (For Single Domain)<br>
+// login save 'session-id' into text file called id.txt<br>
 mgmt_cli login user admin password vpn123  > id.txt 
 
-// use the id.txt as a file from which the session-id (your token) is taken and perform add host command.
-mgmt_cli add host --batch blotus_hosts.csv -s id.txt
-mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
+    // use the id.txt as a file from which the session-id (your token) is taken and perform add host command.<br>
+    mgmt_cli add host --batch blotus_hosts.csv -s id.txt<br>
+    mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
 
-// publish and logout (again using the same session-id)
-mgmt_cli publish –s id.txt
-mgmt_cli logout –s id.txt
+    // publish and logout (again using the same session-id)<br>
+    mgmt_cli publish –s id.txt<br>
+    mgmt_cli logout –s id.txt
 
-**7. (For Multi Domain)**
-// login to domain named MyDomain and save 'session-id' into text file called id.txt. (you can use -d "MyDomain" as well)
-mgmt_cli login user admin password vpn123 domain "MyDomain" > id.txt 
+7. (For Multi Domain)<br>
+    // login to domain named MyDomain and save 'session-id' into text file called id.txt. (you can use -d "MyDomain" as well)<br>
+    mgmt_cli login user admin password vpn123 domain "MyDomain" > id.txt 
 
-// use the id.txt as a file from which the session-id (your token) is taken and perform add host command.
-mgmt_cli add host --batch blotus_hosts.csv -s id.txt
-mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
+    // use the id.txt as a file from which the session-id (your token) is taken and perform add host command.<br>
+    mgmt_cli add host --batch blotus_hosts.csv -s id.txt<br>
+    mgmt_cli add host --batch gnremy_hosts.csv -s id.txt
 
-// publish and logout (again using the same session-id)
-mgmt_cli publish –s id.txt
-mgmt_cli logout –s id.txt
+    // publish and logout (again using the same session-id)<br>
+    mgmt_cli publish –s id.txt<br>
+    mgmt_cli logout –s id.txt
 
-**7. (For the Lazy, single domain)**
-mgmt_cli -r true add host --batch blotus_hosts.csv
-mgmt_cli -r true add host --batch gnremy_hosts.csv
+7. (For the Lazy, single domain)<br>
+    mgmt_cli -r true add host --batch blotus_hosts.csv<br>
+    mgmt_cli -r true add host --batch gnremy_hosts.csv
 
 8. Alternative to publishing your session via CLI(mgmt_cli publish –s id.txt): Connect to Smart Console, goto Manage & Settings -> Sessions -> View Sessions -> Right Click on your Web API Session containing the changes -> Take Over the Session or publish. 
 9. If you have used the default group "groupname", change the group to something else.
